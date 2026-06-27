@@ -23,6 +23,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Pages
+        # enablement: true turns on GitHub Pages (build type "workflow") via the
+        # API during the run, so the deploy step below doesn't 404 when Pages has
+        # not yet been enabled in repo settings.
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Build with Astro
         uses: withastro/action@v3
         # withastro/action installs deps, runs `astro build`, and uploads
