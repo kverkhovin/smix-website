@@ -34,6 +34,8 @@ jobs:
         uses: withastro/action@v3
         # withastro/action installs deps, runs `astro build`, and uploads
         # the dist/ artifact for Pages. It reads `site`/`base` from astro.config.
+        with:
+          node-version: 24
 
   deploy:
     needs: build

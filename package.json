@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "Landing page for smix — a wrapper for Elixir's Mix.",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

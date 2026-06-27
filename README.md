@@ -16,7 +16,7 @@ and deployed to GitHub Pages.
 
 ## Local development
 
-Requires Node.js 18+.
+Requires Node.js 24+.
 
 ```sh
 npm install      # install dependencies
