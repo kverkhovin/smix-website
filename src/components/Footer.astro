@@ -1,0 +1,64 @@
+---
+const year = new Date().getFullYear();
+const repoUrl = 'https://github.com/kverkhovin/smix-website';
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">smix</span>
+      <span class="footer-desc">A wrapper for Elixir’s Mix.</span>
+    </div>
+    <nav class="footer-links">
+      <a href={repoUrl} rel="noopener">GitHub</a>
+      <a href="https://hexdocs.pm/mix/Mix.html" rel="noopener">Mix docs</a>
+      <a href="https://elixir-lang.org/" rel="noopener">Elixir</a>
+    </nav>
+    <span class="footer-copy">© {year} smix</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-block: 32px;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .footer-logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fg);
+  }
+  .footer-desc {
+    color: var(--fg-faint);
+    font-size: 0.9rem;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    font-size: 0.92rem;
+  }
+  .footer-links a {
+    color: var(--fg-muted);
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+  .footer-copy {
+    color: var(--fg-faint);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+  }
+</style>

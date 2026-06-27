@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'smix — Mix, with the warnings under control',
+  description = 'smix is a wrapper for Elixir’s Mix that extends it with smarter compiler-warning handling: ignore all warnings, show only warnings for changes on the current branch, or mute a warning with a comment in code.',
+} = Astro.props;
+
+// Join the base path to an asset, tolerating a base with or without a
+// trailing slash (Astro's BASE_URL has none for this config).
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const faviconHref = `${base}/favicon.svg`;
+
+// Resolve the canonical URL respecting the GitHub Pages base path.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(faviconHref, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

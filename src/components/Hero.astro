@@ -1,0 +1,105 @@
+---
+import Terminal from './Terminal.astro';
+
+const repoUrl = 'https://github.com/kverkhovin/smix-website';
+---
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">A wrapper for Elixir’s Mix</span>
+      <h1 class="hero-title">
+        <span class="logo">smix</span>
+      </h1>
+      <p class="hero-tagline">Mix, with the warnings under control.</p>
+      <p class="hero-sub">
+        smix wraps <code>mix</code> and extends it with smarter compiler-warning
+        handling — ignore the noise, focus on what you changed, and silence a
+        warning right where it lives.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#install">Get started</a>
+        <a class="btn btn-ghost" href={repoUrl} rel="noopener">
+          View on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-demo">
+      <Terminal title="~/my_app">
+        <span class="tline"><span class="c-prompt">$</span> mix compile</span>
+        <span class="tline"><span class="c-warn">warning:</span> variable "ctx" is unused</span>
+        <span class="tline c-muted">  lib/my_app/orders.ex:42</span>
+        <span class="tline"><span class="c-warn">warning:</span> function legacy/0 is unused</span>
+        <span class="tline c-muted">  lib/my_app/legacy.ex:7</span>
+        <span class="tline c-muted">… 137 more warnings</span>
+        <span class="tline">&nbsp;</span>
+        <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--branch</span></span>
+        <span class="tline"><span class="c-ok">✓</span> compiled, showing warnings for your branch only</span>
+        <span class="tline"><span class="c-warn">warning:</span> variable "ctx" is unused</span>
+        <span class="tline c-muted">  lib/my_app/orders.ex:42</span>
+        <span class="tline c-ok">1 warning · 137 hidden</span>
+      </Terminal>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero {
+    padding-block: 96px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-title {
+    margin: 0 0 6px;
+  }
+  .logo {
+    font-family: var(--font-mono);
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    background: linear-gradient(120deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-tagline {
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--fg-muted);
+    font-size: 1.05rem;
+    max-width: 46ch;
+    margin-bottom: 28px;
+  }
+  .hero-sub code {
+    color: var(--fg);
+    background: var(--bg-elev);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.92em;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .hero {
+      padding-block: 64px 48px;
+    }
+  }
+</style>
