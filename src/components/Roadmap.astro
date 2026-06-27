@@ -1,0 +1,84 @@
+---
+---
+
+<section class="section" id="roadmap">
+  <div class="container">
+    <span class="eyebrow">Roadmap</span>
+    <h2 class="roadmap-title">More on the way</h2>
+    <p class="roadmap-lead">
+      Smarter warning handling is just the first step. smix will keep growing
+      with more capabilities layered on top of Mix.
+    </p>
+
+    <div class="roadmap-grid">
+      <div class="r-card r-done">
+        <span class="tag tag-done">Available</span>
+        <h3>Warning management</h3>
+        <p>Ignore all, branch-only, and mute-with-a-comment.</p>
+      </div>
+      <div class="r-card r-next">
+        <span class="tag tag-next">Coming soon</span>
+        <h3>TBD</h3>
+        <p>The next capability is in design. Stay tuned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+  .roadmap-lead {
+    color: var(--fg-muted);
+    max-width: 60ch;
+    margin-bottom: 36px;
+  }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 720px;
+  }
+  .r-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    background: var(--bg-elev);
+  }
+  .r-next {
+    border-style: dashed;
+    background: transparent;
+  }
+  .r-card h3 {
+    font-size: 1.1rem;
+    margin: 12px 0 8px;
+  }
+  .r-card p {
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .tag-done {
+    color: var(--ok);
+    background: rgba(74, 222, 128, 0.12);
+  }
+  .tag-next {
+    color: var(--fg-faint);
+    background: var(--bg-elev);
+  }
+
+  @media (max-width: 640px) {
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,180 @@
+:root {
+  /* color tokens — dark developer-tool theme */
+  --bg: #0b0e14;
+  --bg-elev: #111722;
+  --bg-elev-2: #0f1620;
+  --border: #1e2733;
+  --border-strong: #2a3645;
+  --fg: #e6edf3;
+  --fg-muted: #9aa7b4;
+  --fg-faint: #6b7785;
+
+  /* Elixir-leaning purple accent */
+  --accent: #a78bfa;
+  --accent-strong: #8b5cf6;
+  --accent-soft: rgba(139, 92, 246, 0.12);
+
+  /* terminal/code semantics */
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --err: #f87171;
+  --muted-line: #5b6673;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --maxw: 1080px;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo,
+    Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(139, 92, 246, 0.08),
+      transparent 70%
+    ),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.section {
+  padding-block: 72px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn-primary {
+  background: var(--accent-strong);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #7c4ddb;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+/* terminal lines — each is a block so line breaks don't rely on preserved
+   whitespace (Astro collapses whitespace-only text nodes between elements) */
+.tline {
+  display: block;
+  min-height: 1.5em;
+}
+
+/* terminal text colors (used inside <Terminal> slotted content) */
+.c-prompt {
+  color: var(--accent);
+}
+.c-ok {
+  color: var(--ok);
+}
+.c-warn {
+  color: var(--warn);
+}
+.c-err {
+  color: var(--err);
+}
+.c-muted {
+  color: var(--fg-faint);
+}
+.c-comment {
+  color: var(--muted-line);
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn:hover {
+    transform: none;
+  }
+}

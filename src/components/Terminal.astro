@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'terminal' } = Astro.props;
+---
+
+<div class="term">
+  <div class="term-bar">
+    <span class="dot dot-r"></span>
+    <span class="dot dot-y"></span>
+    <span class="dot dot-g"></span>
+    <span class="term-title">{title}</span>
+  </div>
+  <pre class="term-body"><slot /></pre>
+</div>
+
+<style>
+  .term {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.6);
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--bg-elev);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-r {
+    background: #ff5f56;
+  }
+  .dot-y {
+    background: #ffbd2e;
+  }
+  .dot-g {
+    background: #27c93f;
+  }
+  .term-title {
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--fg-faint);
+  }
+  .term-body {
+    margin: 0;
+    padding: 18px 18px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--fg);
+    overflow-x: auto;
+    white-space: pre;
+  }
+</style>

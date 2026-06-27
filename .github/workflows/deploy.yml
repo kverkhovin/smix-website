@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - claude/smix-website-q7kxgb
+  workflow_dispatch:
+
+# Allow GITHUB_TOKEN to deploy to Pages, and let one deploy finish at a time.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # NOTE: GitHub Pages must be enabled once for this repo, manually, at
+      # Settings -> Pages -> Source: "GitHub Actions". The workflow token cannot
+      # enable Pages itself (it returns "Resource not accessible by integration"),
+      # so there is no Setup/configure-pages step here.
+      - name: Build with Astro
+        uses: withastro/action@v3
+        # withastro/action installs deps, runs `astro build`, and uploads
+        # the dist/ artifact for Pages. It reads `site`/`base` from astro.config.
+        with:
+          node-version: 24
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,73 @@
+---
+import Terminal from './Terminal.astro';
+---
+
+<section class="section install" id="install">
+  <div class="container install-grid">
+    <div>
+      <span class="eyebrow">Get started</span>
+      <h2 class="install-title">Install &amp; run</h2>
+      <p class="install-lead">
+        smix installs as a Mix archive and acts as a drop-in front-end for
+        <code>mix</code>. Use it wherever you’d use Mix.
+      </p>
+      <p class="note">
+        Exact commands are still being finalized while smix is in early
+        development — the snippets here are representative.
+      </p>
+    </div>
+
+    <Terminal title="install">
+      <span class="tline"><span class="c-prompt">$</span> mix archive.install hex smix</span>
+      <span class="tline"><span class="c-ok">✓</span> installed smix</span>
+      <span class="tline">&nbsp;</span>
+      <span class="tline c-comment"># then use it like mix</span>
+      <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--branch</span></span>
+      <span class="tline"><span class="c-prompt">$</span> smix test</span>
+    </Terminal>
+  </div>
+</section>
+
+<style>
+  .install {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elev-2);
+  }
+  .install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .install-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+  .install-lead {
+    color: var(--fg-muted);
+    max-width: 46ch;
+    margin-bottom: 16px;
+  }
+  .install-lead code {
+    color: var(--fg);
+    background: var(--bg-elev);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.92em;
+  }
+  .note {
+    font-size: 0.875rem;
+    color: var(--fg-faint);
+    border-left: 2px solid var(--border-strong);
+    padding-left: 12px;
+    max-width: 46ch;
+  }
+
+  @media (max-width: 860px) {
+    .install-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

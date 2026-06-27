@@ -1,0 +1,123 @@
+---
+import Terminal from './Terminal.astro';
+---
+
+<section class="section" id="features">
+  <div class="container">
+    <span class="eyebrow">Warning management</span>
+    <h2 class="features-title">Tame compiler warnings</h2>
+    <p class="features-lead">
+      Large Elixir codebases accumulate hundreds of warnings until none of them
+      get read. smix gives you three ways to cut through the noise.
+    </p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-head">
+          <span class="num">01</span>
+          <h3>Ignore all warnings</h3>
+        </div>
+        <p>
+          Run a compile that suppresses every compiler warning, so a build’s
+          output stays focused on what actually matters right now.
+        </p>
+        <Terminal title="ignore all">
+          <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--ignore-warnings</span></span>
+          <span class="tline"><span class="c-ok">✓</span> compiled · <span class="c-muted">all warnings hidden</span></span>
+        </Terminal>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="num">02</span>
+          <h3>Only your branch</h3>
+        </div>
+        <p>
+          Show warnings only for code that changed on your current branch, so
+          you fix what you touched instead of inheriting the whole backlog.
+        </p>
+        <Terminal title="branch only">
+          <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--branch</span></span>
+          <span class="tline"><span class="c-warn">warning:</span> variable "ctx" is unused</span>
+          <span class="tline c-muted">  lib/my_app/orders.ex:42</span>
+          <span class="tline c-ok">1 warning · 137 hidden</span>
+        </Terminal>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="num">03</span>
+          <h3>Mute with a comment</h3>
+        </div>
+        <p>
+          Silence a specific, intentional warning by leaving a comment right
+          next to the code — the decision lives where the reader will see it.
+        </p>
+        <Terminal title="lib/my_app/legacy.ex">
+          <span class="tline c-comment"># smix:ignore unused — kept for backwards compat</span>
+          <span class="tline"><span class="c-muted">def</span> legacy() <span class="c-muted">do</span></span>
+          <span class="tline">  :ok</span>
+          <span class="tline c-muted">end</span>
+        </Terminal>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+  .features-lead {
+    color: var(--fg-muted);
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .card h3 {
+    font-size: 1.15rem;
+  }
+  .card p {
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
