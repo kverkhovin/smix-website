@@ -1,18 +1,32 @@
 ---
 interface Props {
   title?: string;
+  cwd?: string;
 }
-const { title = 'terminal' } = Astro.props;
+const { title = 'terminal', cwd = '~' } = Astro.props;
 ---
 
-<div class="term">
+<div class="term" data-cwd={cwd}>
   <div class="term-bar">
     <span class="dot dot-r"></span>
     <span class="dot dot-y"></span>
     <span class="dot dot-g"></span>
     <span class="term-title">{title}</span>
   </div>
-  <pre class="term-body"><slot /></pre>
+  <div class="term-screen">
+    <div class="term-output"><slot /></div>
+    <div class="tline term-inputline">
+      <span class="term-prompt"></span><input
+        class="term-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        aria-label="terminal input"
+      />
+    </div>
+  </div>
 </div>
 
 <style>
@@ -52,13 +66,40 @@ const { title = 'terminal' } = Astro.props;
     font-size: 0.78rem;
     color: var(--fg-faint);
   }
-  .term-body {
+  .term-screen {
     margin: 0;
-    padding: 18px 18px;
+    padding: 18px;
+    font-family: var(--font-mono);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--fg);
-    overflow-x: auto;
+    max-height: 360px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    cursor: text;
+  }
+  .term-inputline {
+    display: flex;
+    align-items: baseline;
+  }
+  .term-prompt {
     white-space: pre;
   }
+  .term-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    color: var(--fg);
+    font: inherit;
+    caret-color: var(--accent);
+  }
 </style>
+
+<script>
+  import '../scripts/term/terminal';
+</script>

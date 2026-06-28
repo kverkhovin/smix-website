@@ -21,7 +21,7 @@ import Terminal from './Terminal.astro';
           Run a compile that suppresses every compiler warning, so a build’s
           output stays focused on what actually matters right now.
         </p>
-        <Terminal title="ignore all">
+        <Terminal title="ignore all" cwd="~/my_app">
           <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--ignore-warnings</span></span>
           <span class="tline"><span class="c-ok">✓</span> compiled · <span class="c-muted">all warnings hidden</span></span>
         </Terminal>
@@ -36,7 +36,7 @@ import Terminal from './Terminal.astro';
           Show warnings only for code that changed on your current branch, so
           you fix what you touched instead of inheriting the whole backlog.
         </p>
-        <Terminal title="branch only">
+        <Terminal title="branch only" cwd="~/my_app">
           <span class="tline"><span class="c-prompt">$</span> smix compile <span class="c-muted">--branch</span></span>
           <span class="tline"><span class="c-warn">warning:</span> variable "ctx" is unused</span>
           <span class="tline c-muted">  lib/my_app/orders.ex:42</span>
